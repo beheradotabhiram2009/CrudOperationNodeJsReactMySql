@@ -113,6 +113,7 @@ Connected to database
 # npm install react-router-dom@6
 # npm install react-bootstrap
 # npm install apollo-boost
+# npm install @apollo/client
 # npm install bootstrap
 # npm install graphql
 # type package.json (You can see all the packages installed)
@@ -231,7 +232,7 @@ export const DELETE_USER = gql`
 # Write following code in Home.js under Components folder
 
 import {React} from "react";
-import { useMutation, useQuery } from '@apollo/react-hooks';
+import { useMutation, useQuery } from '@apollo/client';
 import { GET_USERS, DELETE_USER } from '../Queries';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Table, Button} from 'react-bootstrap';
@@ -304,6 +305,147 @@ function Home() {
 }	
 export default Home;
 
+# Write following code in Create.js under Components folder
 
+import React, { useState } from 'react'
+import { ADD_USER } from '../Queries';
+import { useMutation } from '@apollo/client';
+import { Button, Form } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link, useNavigate } from 'react-router-dom';
 
+function Create() {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [job_title, setJob_title] = useState('');
+    
+    let history = useNavigate();
 
+    const [ addUser ] = useMutation(ADD_USER,);
+
+    const handelSubmit = async (e) => {
+        e.preventDefault();  // Prevent reload
+        let b=name, c=email, d=job_title;
+        try{
+            await addUser({variables:{name:b, email:c, job_title:d}})
+            history('/')//redirect to home
+        }catch(error){alert(error)}
+    }
+    return (
+        <div >
+            <Form className="d-grid gap-2" 
+                style={{marginLeft:'20rem', marginRight:'20em'}}>
+                  
+                <Form.Group className="mb-3" 
+                    controlId="formBasicName">
+                    <Form.Control onChange=
+                        {e => setName(e.target.value)}
+                        type="text" placeholder="Enter Name" required />
+                </Form.Group>
+                  
+                <Form.Group className="mb-3" 
+                    controlId="formBasicEmail">
+                    <Form.Control onChange=
+                        {e => setEmail(e.target.value)}
+                        type="text" placeholder="Enter Email" required />
+                </Form.Group>
+
+                <Form.Group className="mb-3" 
+                    controlId="formBasicJobTitle">
+                    <Form.Control onChange=
+                        {e => setJob_title(e.target.value)}
+                        type="text" placeholder="Enter Job Title" required />
+                </Form.Group>
+                <div>
+                    <Link to='/'>
+                        <Button variant="info" size="md">
+                            Home
+                        </Button>
+                    </Link>
+                    <Button
+                        onClick={async(e) => await handelSubmit(e)}
+                        variant="primary" type="submit">
+                        Submit
+                    </Button>
+                </div>
+            </Form>
+        </div>
+    )
+}
+  
+export default Create
+
+# Write following code in Edit.js under Components folder
+
+import React, { useEffect, useState } from 'react'
+import { useMutation } from '@apollo/client';
+import { EDIT_USER } from '../Queries';
+import { Button, Form } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link, useNavigate } from 'react-router-dom';
+
+function Edit() {
+    const [job_title, setJob_title] = useState('');
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [id, setId] = useState(0);
+ 
+    let navigate = useNavigate()
+
+    useEffect(() => {
+        setId(parseInt(localStorage.getItem('id')))//set the integer value
+        setName(localStorage.getItem('name'))
+        setEmail(localStorage.getItem('email'))
+        setJob_title(localStorage.getItem('job_title'))
+    }, [])
+
+    const [ changeUser ] = useMutation(EDIT_USER,);
+
+    const handelSubmit = async(e) => {
+        e.preventDefault();
+        let a=id, b=name, c=email, d=job_title;
+        try{
+            await changeUser({variables:{id:a, name:b, email:c, job_title:d}});
+            navigate('/');
+        }catch(error){alert(error)}
+    }
+    return (
+        <div>
+            <Form className="d-grid gap-2" 
+                    style={{marginLeft:'20rem', marginRight:'20em'}}>
+                <Form.Group className="mb-3">
+                    <Form.Control value={name}
+                        onChange={e => setName(e.target.value)}
+                        type="text" placeholder="Enter Name" />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Control value={email}
+                        onChange={e => setEmail(e.target.value)}
+                        type="text" placeholder="Enter Email" />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Control value={job_title}
+                        onChange={e => setJob_title(e.target.value)}
+                        type="text" placeholder="Enter Job Title" />
+                </Form.Group>
+                <div>
+                    <Link  to='/'>
+                        <Button variant="primary" size="md">
+                            Home
+                        </Button>
+                    </Link>
+                    <Button
+                        onClick={async(e) => await handelSubmit(e)
+                        }variant="warning" type="submit" size="md">
+                        Update
+                    </Button>
+                </div>
+            </Form>
+        </div>
+    )
+}
+export default Edit;
+
+# now execute npm start command and test the application
