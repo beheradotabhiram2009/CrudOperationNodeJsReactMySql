@@ -24,9 +24,8 @@ CREATE TABLE `users` (
 # npm install cors
 # npm install mysql2
 # npm install graphql
-# type package.json
-# You can see all the packages installed 
-# Write follwing in index.js under server directory
+# type package.json (You can see all the packages installed)
+# Write follwing code in index.js under server directory
 
 const express = require('express');
 const  { graphqlHTTP } = require('express-graphql');
@@ -107,6 +106,7 @@ Connected to database
 
 # Go to parent directory by using cd..
 # Write the command: npx create-react-app client
+# (ignore 6 errors)
 # Change the directory to client
 # Write the following commands in sequence : 
 # npm start (now you can see react logo on the screen)
@@ -115,5 +115,25 @@ Connected to database
 # npm install apollo-boost
 # npm install bootstrap
 # npm install graphql
-# type package.json (You can see all the packages installed )
-
+# type package.json (You can see all the packages installed)
+# Write following code in index.js under public folder
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>
