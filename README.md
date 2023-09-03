@@ -1,4 +1,4 @@
-# Crud Operation Using Graphql, React, Apollo, Express 
+# Demo Example provides crud operation using Graphql, React, Apollo, Express 
 # Create a directory server, change to server directory
 # Write the following commands in sequence : 
 # npm init
