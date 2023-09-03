@@ -116,7 +116,7 @@ Connected to database
 # npm install bootstrap
 # npm install graphql
 # type package.json (You can see all the packages installed)
-# Write following code in index.js under public folder
+# Write following code in index.html under public folder
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -303,5 +303,7 @@ function Home() {
 	);
 }	
 export default Home;
+
+
 
 
