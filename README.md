@@ -109,9 +109,11 @@ Connected to database
 # Write the command: npx create-react-app client
 # Change the directory to client
 # Write the following commands in sequence : 
+# npm start (now you can see react logo on the screen)
 # npm install react-router-dom@6
 # npm install react-bootstrap
 # npm install apollo-boost
 # npm install bootstrap
 # npm install graphql
+# type package.json (You can see all the packages installed )
 
