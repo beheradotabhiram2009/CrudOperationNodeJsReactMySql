@@ -1,6 +1,6 @@
 # Demo Example provides crud operation using Graphql, React, Apollo, Express 
 # Download and install mysql 8.1
-# create a database mydb and a table student by using following sql
+# create a database userapp and a table users by using following sql
 
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -27,6 +27,7 @@ CREATE TABLE `users` (
 # type package.json
 # You can see all the packages installed 
 # Write follwing in index.js under server directory
+
 const express = require('express');
 const  { graphqlHTTP } = require('express-graphql');
 const { buildSchema } = require('graphql');
@@ -99,6 +100,7 @@ app.use('/graphql', graphqlHTTP({
 httpServer = require('http').createServer(app);
 httpServer.listen('4000');
 console.log('Running a GraphQL API server at localhost:4000/graphql');
+
 # write command: node index.js then You should see :
 Running a GraphQL API server at localhost:4000/graphql
 Connected to database
