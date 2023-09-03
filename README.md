@@ -1,6 +1,7 @@
 # Demo Example provides crud operation using Graphql, React, Apollo, Express 
 # Download and install mysql 8.1
 # create a database mydb and a table student by using following sql
+
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
@@ -9,6 +10,10 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 );
+# insert sample rows.
+
+# download and install node.js 
+
 # Create a directory server, change to server directory
 # Write the following commands in sequence : 
 # npm init
@@ -97,6 +102,7 @@ console.log('Running a GraphQL API server at localhost:4000/graphql');
 # write command: node index.js then You should see :
 Running a GraphQL API server at localhost:4000/graphql
 Connected to database
+
 # Go to parent directory by using cd..
 # Write the command: npx create-react-app client
 # Change the directory to client
@@ -106,3 +112,4 @@ Connected to database
 # npm install apollo-boost
 # npm install bootstrap
 # npm install graphql
+
