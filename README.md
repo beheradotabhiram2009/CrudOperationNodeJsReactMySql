@@ -1,4 +1,14 @@
 # Demo Example provides crud operation using Graphql, React, Apollo, Express 
+# Download and install mysql 8.1
+# create a database mydb and a table student by using following sql
+CREATE TABLE `users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `job_title` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+);
 # Create a directory server, change to server directory
 # Write the following commands in sequence : 
 # npm init
