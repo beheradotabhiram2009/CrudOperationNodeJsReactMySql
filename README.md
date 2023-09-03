@@ -137,3 +137,48 @@ Connected to database
     <div id="root"></div>
   </body>
 </html>
+
+# Write following code in index.js under src folder
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+
+const client = new ApolloClient({
+  uri: 'http://localhost:4000/graphql',
+  cache: new InMemoryCache(),
+});
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(
+  <ApolloProvider client={client}>
+    <App />
+  </ApolloProvider>,
+);
+
+# Write following code in App.js under src folder
+import React from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Create from './Components/Create';
+import Edit from './Components/Edit';
+import Home from './Components/Home'
+  
+function App() {
+    return (
+        <div className='App'>
+              <Router>
+                <Routes>
+                    <Route path='/' 
+                        element={<Home />} />
+                    <Route path='/create' 
+                        element={<Create />} />
+                    <Route path='/edit' 
+                        element={<Edit />} />
+                </Routes>
+            </Router>
+        </div>
+    );
+}
+  
+export default App;
