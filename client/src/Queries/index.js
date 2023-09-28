@@ -6,7 +6,9 @@ export const GET_USERS = gql`
       id,
       name,
       job_title,
-      email
+      email,
+      joining_date,
+      content
     }
   }
 `;
@@ -17,20 +19,22 @@ export const VIEW_USER = gql`
       id,
       name,
       job_title,
-      email
+      email,
+      joining_date,
+      content
     }
   }
 `;
 
 export const ADD_USER = gql`
-  mutation($name: String, $email: String, $job_title: String) {
-    createUser (name: $name, email: $email, job_title: $job_title)
+  mutation($name: String, $email: String, $job_title: String, $joining_date:Date, $content:Blob) {
+    createUser (name: $name, email: $email, job_title: $job_title, joining_date:$joining_date, content:$content)
   }
 `;
 
 export const EDIT_USER = gql`
-  mutation($id: Int, $name: String, $email: String, $job_title: String) {
-    updateUser(id: $id, name: $name, email: $email, job_title: $job_title)
+  mutation($id: Int, $name: String, $email: String, $job_title: String, $joining_date:Date, $content:Blob) {
+    updateUser(id: $id, name: $name, email: $email, job_title: $job_title, joining_date:$joining_date, content:$content)
   }
 `;
 
