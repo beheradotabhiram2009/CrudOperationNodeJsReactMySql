@@ -1,6 +1,6 @@
 const express = require('express');
 const  { graphqlHTTP } = require('express-graphql');
-const { buildSchema } = require('graphql');
+const { GraphQLScalarType, Kind, buildSchema } = require('graphql');
 const mysql = require('mysql2');
 const cors = require('cors');
 
@@ -8,20 +8,64 @@ let con = {};
 const app = express();
 app.use(cors());
 
+  const resolverDate = {
+  Date: new GraphQLScalarType({
+    name: 'Date',
+    description: 'Date custom scalar type',
+    parseValue(value) {
+      return value; // value from the client
+    },
+    serialize(value) {
+      return value; // value sent to the client
+    },
+    parseLiteral(ast) {
+      if (ast.kind === Kind.INT) {
+        return ast.value // ast value is always in string format
+      }
+      return null;
+    },
+  }),
+};
+
+const resolverBlob = {
+  Date: new GraphQLScalarType({
+    name: 'Blob',
+    description: 'Blob custom scalar type',
+    parseValue(value) {
+      return value; 
+    },
+    serialize(value) {
+      return value; //value sent to the client
+    },
+    parseLiteral(ast) {
+      if (ast.kind === Kind.INT) {
+        return ast.value
+      }
+      return null;
+    },
+  }),
+}; 
+ 
 const schema = buildSchema(`
+  scalar Date
+  scalar Blob
   type User {
     id: Int
     name: String
     email: String
     job_title: String
+    joining_date:Date
+    content:Blob
   }
   type Query {
     getUsers: [User],
-    getUser(id: Int) : User
-  }
+    getUser(id: Int):User
+    }
   type Mutation {
-    updateUser(id: Int, name: String, email: String, job_title: String): Boolean
-    createUser(name: String, email: String, job_title: String): Boolean
+    updateUser(id: Int, name: String, email: String, job_title: String, 
+      joining_date:Date, content:Blob): Boolean,
+    createUser(name: String, email: String, job_title: String, joining_date:Date, 
+      content:Blob): Boolean,
     deleteUser(id: Int): Boolean
   }
 `);
