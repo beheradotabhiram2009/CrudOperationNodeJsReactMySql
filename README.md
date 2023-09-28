@@ -1,4 +1,4 @@
-# Demo Example provides crud operation using Graphql, React, Apollo, Express 
+# Demo Example provides crud operation using Graphql, React, Apollo, Express, mysql
 # Download and install mysql 8.1
 # create a database userapp and a table users by using following sql
 CREATE TABLE `users` (
