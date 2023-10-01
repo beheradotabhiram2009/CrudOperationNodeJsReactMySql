@@ -287,6 +287,25 @@ export const DELETE_USER = gql`
   }
 `;
 ```
+### Write two convertion functions in Base64.js under src folder
+```js
+//to displa the image
+export const  blobToBase64 = (value) =>{
+    const byteNumbers = value?.data;
+    let byteChars = '';
+    for (let i = 0; i < byteNumbers?.length; i++) {
+        byteChars += String.fromCharCode(byteNumbers[i]);
+    }
+    //alert(byteChars);
+    return atob(byteChars);
+}; 
+
+//to set the date
+export const toDateStr=(dt)=>{
+    const m = dt.getMonth()+1;
+    return (dt.getFullYear() + '-' + m + '-' + dt.getDate());
+}
+```
 ### Write following code in Home.js under Components folder
 ```js
 import React from "react";
