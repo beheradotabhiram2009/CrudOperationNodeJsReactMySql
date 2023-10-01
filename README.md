@@ -1,6 +1,7 @@
 # Demo Example provides crud operation using Graphql, React, Apollo, Express, mysql
-# Download and install mysql 8.1
-# create a database userapp and a table users by using following sql
+## Download and install mysql 8.1
+## create a database userapp and a table users by using following sql
+```sql
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
@@ -11,23 +12,24 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 );
-# insert sample rows.
+```
+## insert sample rows.
 
-# download and install node.js 
+## download and install node.js 
 
-# Create a directory server, change to server directory
-# Write the following commands in sequence : 
-# npm init
-# npm install express
-# npm install apollo-server-express
-# npm install body-parser
-# npm install express-graphql
-# npm install cors
-# npm install mysql2
-# npm install graphql
-# type package.json (You can see all the packages installed)
-# Write follwing code in index.js under server directory
-
+## Create a directory server, change to server directory
+## Write the following commands in sequence : 
+## npm init
+## npm install express
+## npm install apollo-server-express
+## npm install body-parser
+## npm install express-graphql
+## npm install cors
+## npm install mysql2
+## npm install graphql
+## type package.json (You can see all the packages installed)
+## Write follwing code in index.js under server directory
+```js
 const express = require('express');
 const  { graphqlHTTP } = require('express-graphql');
 const { GraphQLScalarType, Kind, buildSchema } = require('graphql');
@@ -144,29 +146,30 @@ app.use('/graphql', graphqlHTTP({
 httpServer = require('http').createServer(app);
 httpServer.listen('4000');
 console.log('Running a GraphQL API server at localhost:4000/graphql');
-
-# write command: node index.js then You should see :
+```
+## write command: node index.js then You should see :
 Running a GraphQL API server at localhost:4000/graphql
 Connected to database
 
-# Go to parent directory by using cd..
-# Write the command: 
+## Go to parent directory by using cd..
+## Write the command: 
 npx create-react-app client
-# (ignore 6 errors)
-# Change the directory to client
-# Write the following commands in sequence : 
-# npm start (now you can see react logo on the screen)
-# npm install react-router-dom@6
-# npm install react-bootstrap
-# npm install apollo-boost
-# npm install @apollo/client
-# npm install bootstrap
-# npm install react-dom
-# npm install graphql-request
-# npm install react-datepicker
-# npm install graphql
-# type package.json (You can see all the packages installed)
-# Write following code in index.html under public folder
+## (ignore 6 errors)
+## Change the directory to client
+## Write the following commands in sequence : 
+## npm start (now you can see react logo on the screen)
+## npm install react-router-dom@6
+## npm install react-bootstrap
+## npm install apollo-boost
+## npm install @apollo/client
+## npm install bootstrap
+## npm install react-dom
+## npm install graphql-request
+## npm install react-datepicker
+## npm install graphql
+## type package.json (You can see all the packages installed)
+## Write following code in index.html under public folder
+```html
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -187,8 +190,9 @@ npx create-react-app client
     <div id="root"></div>
   </body>
 </html>
-
-# Write following code in index.js under src folder
+```
+## Write following code in index.js under src folder
+```js
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
@@ -206,8 +210,9 @@ root.render(
     <App />
   </ApolloProvider>,
 );
-
-# Write following code in App.js under src folder
+```
+## Write following code in App.js under src folder
+```js
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Create from './Components/Create';
@@ -232,10 +237,10 @@ function App() {
 }
   
 export default App;
-
-# Create two folders 1. Components, 2. Queries under src folder
-# Write following code in index.js under Queries folder
-
+```
+## Create two folders 1. Components, 2. Queries under src folder
+## Write following code in index.js under Queries folder
+```js
 import { gql } from '@apollo/client';
 
 export const GET_USERS = gql`
@@ -281,9 +286,9 @@ export const DELETE_USER = gql`
     deleteUser(id: $id)
   }
 `;
-
-# Write following code in Home.js under Components folder
-
+```
+## Write following code in Home.js under Components folder
+```js
 import React from "react";
 import { useMutation, useQuery } from '@apollo/client';
 import { GET_USERS, DELETE_USER } from '../Queries';
@@ -363,9 +368,9 @@ function Home() {
 	);
 }	
 export default Home;
-
-# Write following code in Create.js under Components folder
-
+```
+## Write following code in Create.js under Components folder
+```js
 import React, { useState } from 'react'
 import { ADD_USER } from '../Queries';
 import { useMutation } from '@apollo/client';
@@ -457,9 +462,9 @@ function Create() {
 }
   
 export default Create
-
-# Write following code in Edit.js under Components folder
-
+```
+## Write following code in Edit.js under Components folder
+```js
 import React, { Fragment, useEffect, useState } from 'react'
 import DatePicker from 'react-datepicker';
 import { useMutation, useQuery } from '@apollo/client';
@@ -574,5 +579,5 @@ function  Edit() {
     )
 }
 export default Edit;
-
-# now execute npm start command and test the application
+```
+## now execute npm start command and test the application
