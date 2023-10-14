@@ -28,7 +28,7 @@ app.use(cors());
 };
 
 const resolverBlob = {
-  Date: new GraphQLScalarType({
+  Blob: new GraphQLScalarType({
     name: 'Blob',
     description: 'Blob custom scalar type',
     parseValue(value) {
