@@ -13,7 +13,7 @@ function Create() {
     const [email, setEmail] = useState('');
     const [jobTitle, setJobTitle] = useState('');
     const [content, setContent] = useState('');
-    const [joiningDate, setJoiningDate] = useState();
+    const [joiningDate, setJoiningDate] = useState('');
 
     let history = useNavigate();
     const [ addUser ] = useMutation(ADD_USER,);
