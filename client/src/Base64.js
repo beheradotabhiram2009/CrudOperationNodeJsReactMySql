@@ -6,7 +6,7 @@ export const  blobToBase64 = (value) =>{
         byteChars += String.fromCharCode(byteNumbers[i]);
     }
     //alert(byteChars);
-    return atob(byteChars);
+    return byteChars;
 }; 
 
 //to set the date
