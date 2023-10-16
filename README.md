@@ -1,4 +1,4 @@
-## Demo Example provides crud operation using Graphql, React, Apollo, Express, mysql
+## Demo Example provides crud operation using Graphql, React, Apollo, Express, mysql for image and date field
 ### Download and install mysql 8.1
 ### create a database userapp and a table users by using following sql
 ```sql
@@ -297,7 +297,7 @@ export const  blobToBase64 = (value) =>{
         byteChars += String.fromCharCode(byteNumbers[i]);
     }
     //alert(byteChars);
-    return atob(byteChars);
+    return byteChars;
 }; 
 
 //to set the date
@@ -426,7 +426,7 @@ function Create() {
     const handelSubmit = async (e) => {
         e.preventDefault();  // Prevent reload
         let b=name, c=email, d=jobTitle, f=joiningDate, 
-        g = btoa(content);//sent to server
+        g = content;//sent to server
         try{
             await addUser({variables:{name:b, email:c, job_title:d, joining_date:f,
                  content:g}})
@@ -541,7 +541,7 @@ function  Edit() {
     const handelSubmit = async (e) => {
         e.preventDefault();  // Prevent reload
         let b=name, c=email, d=jobTitle, f=joiningDate, 
-        g = btoa(content);// sent to server 
+        g = content;// sent to server 
         try{
             await changeUser({variables:{id:uid, name:b, email:c, job_title:d, 
                 joining_date:f, content:g}})
