@@ -55,7 +55,7 @@ function  Edit() {
     const handelSubmit = async (e) => {
         e.preventDefault();  // Prevent reload
         let b=name, c=email, d=jobTitle, f=joiningDate, 
-        g = btoa(content);// sent to server 
+        g = content;// sent to server 
         try{
             await changeUser({variables:{id:uid, name:b, email:c, job_title:d, 
                 joining_date:f, content:g}})
