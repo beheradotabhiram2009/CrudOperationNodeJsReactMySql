@@ -27,13 +27,13 @@ export const VIEW_USER = gql`
 `;
 
 export const ADD_USER = gql`
-  mutation($name: String, $email: String, $job_title: String, $joining_date:Date, $content:Blob) {
+  mutation($name: String, $email: String, $job_title: String, $joining_date:Date, $content:String) {
     createUser (name: $name, email: $email, job_title: $job_title, joining_date:$joining_date, content:$content)
   }
 `;
 
 export const EDIT_USER = gql`
-  mutation($id: Int, $name: String, $email: String, $job_title: String, $joining_date:Date, $content:Blob) {
+  mutation($id: Int, $name: String, $email: String, $job_title: String, $joining_date:Date, $content:String) {
     updateUser(id: $id, name: $name, email: $email, job_title: $job_title, joining_date:$joining_date, content:$content)
   }
 `;
