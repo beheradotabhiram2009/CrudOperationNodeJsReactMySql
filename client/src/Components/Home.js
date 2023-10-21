@@ -3,7 +3,6 @@ import { useMutation, useQuery } from '@apollo/client';
 import { GET_USERS, DELETE_USER } from '../Queries';
 import { Table, Button} from 'react-bootstrap';
 import { useNavigate , Link} from 'react-router-dom';
-import { blobToBase64 } from "../Base64";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -52,7 +51,7 @@ function Home() {
 							<td>{user.job_title}</td>
 							<td>{user.email}</td>
 							<td>{new Date(user.joining_date).toDateString()}</td>
-					    	<td><img src= {'data:image/jpeg;base64,'+blobToBase64(user.content)} width={50} height={50} alt='' /></td>
+					    	<td><img src= {'data:image/jpeg;base64,'+user.content} width={50} height={50} alt='' /></td>
 							<td>
 								<Link to={`/edit`}>
 									<Button onClick={(e) =>{
