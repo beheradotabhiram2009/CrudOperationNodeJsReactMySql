@@ -1,13 +1,12 @@
-//to displa the image
-export const  blobToBase64 = (value) =>{
-    const byteNumbers = value?.data;
-    let byteChars = '';
-    for (let i = 0; i < byteNumbers?.length; i++) {
-        byteChars += String.fromCharCode(byteNumbers[i]);
-    }
-    //alert(byteChars);
-    return byteChars;
-}; 
+//file to base64
+export const fileToBase64 =(file, callback) =>{
+    const reader = new FileReader();
+    reader.addEventListener('load', () => callback(reader.result));
+    reader.onerror = (error) => {
+        alert('Load Error: '+ error);
+    };
+    reader.readAsDataURL(file);
+};
 
 //to set the date
 export const toDateStr=(dt)=>{
