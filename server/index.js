@@ -27,35 +27,15 @@ app.use(cors());
   }),
 };
 
-const resolverBlob = {
-  Blob: new GraphQLScalarType({
-    name: 'Blob',
-    description: 'Blob custom scalar type',
-    parseValue(value) {
-      return value; 
-    },
-    serialize(value) {
-      return value; //value sent to the client
-    },
-    parseLiteral(ast) {
-      if (ast.kind === Kind.INT) {
-        return ast.value
-      }
-      return null;
-    },
-  }),
-}; 
- 
 const schema = buildSchema(`
   scalar Date
-  scalar Blob
   type User {
     id: Int
     name: String
     email: String
     job_title: String
     joining_date:Date
-    content:Blob
+    content:String
   }
   type Query {
     getUsers: [User],
@@ -63,9 +43,9 @@ const schema = buildSchema(`
     }
   type Mutation {
     updateUser(id: Int, name: String, email: String, job_title: String, 
-      joining_date:Date, content:Blob): Boolean,
+      joining_date:Date, content:String): Boolean,
     createUser(name: String, email: String, job_title: String, joining_date:Date, 
-      content:Blob): Boolean,
+      content:String): Boolean,
     deleteUser(id: Int): Boolean
   }
 `);
