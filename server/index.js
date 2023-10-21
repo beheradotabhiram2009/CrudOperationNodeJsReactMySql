@@ -6,6 +6,7 @@ const cors = require('cors');
 
 let con = {};
 const app = express();
+app.use(express.json({ limit: '15gb' }));
 app.use(cors());
 
   const resolverDate = {
