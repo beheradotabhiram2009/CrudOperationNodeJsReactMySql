@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client';
 import { Button, Form } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
-import { toDateStr } from '../Base64';
+import { toDateStr, fileToBase64 } from '../Base64';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -20,15 +20,12 @@ function Create() {
 
     const changeContent = (e) => {
         if (e.target.files[0]) {
-            try {
-                const reader = new FileReader();
-                reader.readAsDataURL(e.target.files[0]);//1st file
-                reader.onloadend = () => {
-                    console.log(reader.result);
-                    setContent(reader.result.split(',')[1]);
-                    //content = byte64 string after ,
-                }
-            } catch(error) {alert(error);}
+            const file = e.target.files[0];
+            //setMime('image/'+file.name.split('.')[1]);
+            fileToBase64(file, function(base64Data){
+                console.log(base64Data);
+                setContent(base64Data.split(',')[1]);
+            })
         }
     }
     const handelSubmit = async (e) => {
