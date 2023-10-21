@@ -7,7 +7,7 @@ CREATE TABLE `users` (
   `name` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   `job_title` varchar(45) DEFAULT NULL,
-  `content` mediumblob,
+  `content` longtext,
   `joining_date` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
@@ -59,35 +59,15 @@ app.use(cors());
   }),
 };
 
-const resolverBlob = {
-  Blob: new GraphQLScalarType({
-    name: 'Blob',
-    description: 'Blob custom scalar type',
-    parseValue(value) {
-      return value; 
-    },
-    serialize(value) {
-      return value; //value sent to the client
-    },
-    parseLiteral(ast) {
-      if (ast.kind === Kind.INT) {
-        return ast.value
-      }
-      return null;
-    },
-  }),
-}; 
- 
 const schema = buildSchema(`
   scalar Date
-  scalar Blob
   type User {
     id: Int
     name: String
     email: String
     job_title: String
     joining_date:Date
-    content:Blob
+    content:String
   }
   type Query {
     getUsers: [User],
@@ -95,9 +75,9 @@ const schema = buildSchema(`
     }
   type Mutation {
     updateUser(id: Int, name: String, email: String, job_title: String, 
-      joining_date:Date, content:Blob): Boolean,
+      joining_date:Date, content:String): Boolean,
     createUser(name: String, email: String, job_title: String, joining_date:Date, 
-      content:Blob): Boolean,
+      content:String): Boolean,
     deleteUser(id: Int): Boolean
   }
 `);
@@ -270,13 +250,13 @@ export const VIEW_USER = gql`
 `;
 
 export const ADD_USER = gql`
-  mutation($name: String, $email: String, $job_title: String, $joining_date:Date, $content:Blob) {
+  mutation($name: String, $email: String, $job_title: String, $joining_date:Date, $content:String) {
     createUser (name: $name, email: $email, job_title: $job_title, joining_date:$joining_date, content:$content)
   }
 `;
 
 export const EDIT_USER = gql`
-  mutation($id: Int, $name: String, $email: String, $job_title: String, $joining_date:Date, $content:Blob) {
+  mutation($id: Int, $name: String, $email: String, $job_title: String, $joining_date:Date, $content:String) {
     updateUser(id: $id, name: $name, email: $email, job_title: $job_title, joining_date:$joining_date, content:$content)
   }
 `;
@@ -289,22 +269,22 @@ export const DELETE_USER = gql`
 ```
 ### Write two convertion functions in Base64.js under src folder
 ```js
-//to displa the image
-export const  blobToBase64 = (value) =>{
-    const byteNumbers = value?.data;
-    let byteChars = '';
-    for (let i = 0; i < byteNumbers?.length; i++) {
-        byteChars += String.fromCharCode(byteNumbers[i]);
-    }
-    //alert(byteChars);
-    return byteChars;
-}; 
+//file to base64
+export const fileToBase64 =(file, callback) =>{
+    const reader = new FileReader();
+    reader.addEventListener('load', () => callback(reader.result));
+    reader.onerror = (error) => {
+        alert('Load Error: '+ error);
+    };
+    reader.readAsDataURL(file);
+};
 
 //to set the date
 export const toDateStr=(dt)=>{
     const m = dt.getMonth()+1;
     return (dt.getFullYear() + '-' + m + '-' + dt.getDate());
 }
+
 ```
 ### Write following code in Home.js under Components folder
 ```js
@@ -313,7 +293,6 @@ import { useMutation, useQuery } from '@apollo/client';
 import { GET_USERS, DELETE_USER } from '../Queries';
 import { Table, Button} from 'react-bootstrap';
 import { useNavigate , Link} from 'react-router-dom';
-import { blobToBase64 } from "../Base64";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -362,7 +341,7 @@ function Home() {
 							<td>{user.job_title}</td>
 							<td>{user.email}</td>
 							<td>{new Date(user.joining_date).toDateString()}</td>
-					    	<td><img src= {'data:image/jpeg;base64,'+blobToBase64(user.content)} width={50} height={50} alt='' /></td>
+					    	<td><img src= {'data:image/jpeg;base64,'+user.content} width={50} height={50} alt='' /></td>
 							<td>
 								<Link to={`/edit`}>
 									<Button onClick={(e) =>{
@@ -396,7 +375,7 @@ import { useMutation } from '@apollo/client';
 import { Button, Form } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
-import { toDateStr } from '../Base64';
+import { toDateStr, fileToBase64 } from '../Base64';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -412,17 +391,14 @@ function Create() {
 
     const changeContent = (e) => {
         if (e.target.files[0]) {
-            try {
-                const reader = new FileReader();
-                reader.readAsDataURL(e.target.files[0]);//1st file
-                reader.onloadend = () => {
-                    console.log(reader.result);
-                    setContent(reader.result.split(',')[1]);
-                    //content = byte64 string after ,
-                }
-            } catch(error) {alert(error);}
+            const file = e.target.files[0];
+            fileToBase64(file, function(base64Data){
+                console.log(base64Data);
+                setContent(base64Data.split(',')[1]);
+            })
         }
     }
+
     const handelSubmit = async (e) => {
         e.preventDefault();  // Prevent reload
         let b=name, c=email, d=jobTitle, f=joiningDate, 
@@ -490,7 +466,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { EDIT_USER, VIEW_USER } from '../Queries';
 import { Button, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import { blobToBase64, toDateStr } from '../Base64';
+import { fileToBase64, toDateStr } from '../Base64';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -525,19 +501,16 @@ function  Edit() {
     if(error) return <Fragment>error...</Fragment>
     //refetch();//refetch the query when redirecting
         
-    const changeContent = (e) => {
+     const changeContent = (e) => {
         if (e.target.files[0]) {
-            try {
-                const reader = new FileReader();
-                reader.readAsDataURL(e.target.files[0]);//1st file
-                reader.onloadend = () => {
-                    console.log(reader.result);
-                    setContent((reader.result.split(',')[1]));
-                    //content = byte64 string after ,
-                }
-            } catch(error) {alert(error);}
+            const file = e.target.files[0];
+            fileToBase64(file, function(base64Data){
+                console.log(base64Data);
+                setContent(base64Data.split(',')[1]);
+            })
         }
     }
+
     const handelSubmit = async (e) => {
         e.preventDefault();  // Prevent reload
         let b=name, c=email, d=jobTitle, f=joiningDate, 
