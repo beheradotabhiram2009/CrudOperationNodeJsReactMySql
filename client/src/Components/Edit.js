@@ -4,7 +4,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { EDIT_USER, VIEW_USER } from '../Queries';
 import { Button, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import { blobToBase64, toDateStr } from '../Base64';
+import { fileToBase64, toDateStr } from '../Base64';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -39,17 +39,14 @@ function  Edit() {
     if(error) return <Fragment>error...</Fragment>
     //refetch();//refetch the query when redirecting
         
-    const changeContent = (e) => {
+   const changeContent = (e) => {
         if (e.target.files[0]) {
-            try {
-                const reader = new FileReader();
-                reader.readAsDataURL(e.target.files[0]);//1st file
-                reader.onloadend = () => {
-                    console.log(reader.result);
-                    setContent((reader.result.split(',')[1]));
-                    //content = byte64 string after ,
-                }
-            } catch(error) {alert(error);}
+            const file = e.target.files[0];
+            //setMime('image/'+file.name.split('.')[1]);
+            fileToBase64(file, function(base64Data){
+                console.log(base64Data);
+                setContent(base64Data.split(',')[1]);
+            })
         }
     }
     const handelSubmit = async (e) => {
