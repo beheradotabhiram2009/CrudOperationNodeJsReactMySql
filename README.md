@@ -25,7 +25,6 @@ Write the following commands in sequence :
 
 ```npm init```
 ```npm install express```
-```npm install apollo-server-express```
 ```npm install body-parser```
 ```npm install express-graphql```
 ```npm install cors```
