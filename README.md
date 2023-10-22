@@ -31,7 +31,8 @@ Write the following commands in sequence :
 ```npm install cors```
 ```npm install mysql2```
 ```npm install graphql```
-```type package.json``` (You can see all the packages installed)
+```type package.json``` 
+(You can see all the packages installed)
 
 Write follwing code in index.js under server directory
 ```js
@@ -133,28 +134,27 @@ httpServer = require('http').createServer(app);
 httpServer.listen('4000');
 console.log('Running a GraphQL API server at localhost:4000/graphql');
 ```
-### write command: node index.js then You should see :
+write command: node index.js then You should see :
 Running a GraphQL API server at localhost:4000/graphql
 Connected to database
 
-### Go to parent directory by using cd..
-### Write the command: 
-npx create-react-app client
-### (ignore 6 errors)
-### Change the directory to client
-### Write the following commands in sequence : 
-### npm start (now you can see react logo on the screen)
-### npm install react-router-dom@6
-### npm install react-bootstrap
-### npm install apollo-boost
-### npm install @apollo/client
-### npm install bootstrap
-### npm install react-dom
-### npm install graphql-request
-### npm install react-datepicker
-### npm install graphql
-### type package.json (You can see all the packages installed)
-### Write following code in index.html under public folder
+Go to parent directory by using cd..
+Write the command: 
+```npx create-react-app client``` 
+(ignore 6 errors)
+Change the directory to client
+Write the following commands in sequence : 
+```npm start``` (now you can see react logo on the screen)
+```npm install react-router-dom@6```
+```npm install react-bootstrap```
+```npm install apollo-boost```
+```npm install @apollo/client```
+```npm install bootstrap```
+```npm install react-datepicker```
+```npm install graphql```
+````type package.json```
+(You can see all the packages installed)
+Write following code in index.html under public folder
 ```html
 <!DOCTYPE html>
 <html lang="en">
