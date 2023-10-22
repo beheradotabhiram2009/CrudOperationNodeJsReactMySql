@@ -1,6 +1,8 @@
 ## Demo Example provides crud operation using Graphql, React, Apollo, Express, mysql for image and date field
-### Download and install mysql 8.1
-### create a database userapp and a table users by using following sql
+
+Download and install mysql 8.1
+
+create a database userapp and a table users by using following sql
 ```sql
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -13,22 +15,26 @@ CREATE TABLE `users` (
   UNIQUE KEY `id_UNIQUE` (`id`)
 );
 ```
-### insert sample rows.
+insert sample rows.
 
-### download and install node.js 
+download and install node.js 
 
-### Create a directory server, change to server directory
-### Write the following commands in sequence : 
-### npm init
-### npm install express
-### npm install apollo-server-express
-### npm install body-parser
-### npm install express-graphql
-### npm install cors
-### npm install mysql2
-### npm install graphql
-### type package.json (You can see all the packages installed)
-### Write follwing code in index.js under server directory
+Create a directory server, change to server directory
+
+Write the following commands in sequence : 
+
+'''cmd
+npm init
+npm install express
+npm install apollo-server-express
+npm install body-parser
+npm install express-graphql
+npm install cors
+npm install mysql2
+npm install graphql
+type package.json``` (You can see all the packages installed)
+
+Write follwing code in index.js under server directory
 ```js
 const express = require('express');
 const  { graphqlHTTP } = require('express-graphql');
