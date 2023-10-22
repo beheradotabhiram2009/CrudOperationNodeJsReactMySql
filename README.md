@@ -23,16 +23,15 @@ Create a directory server, change to server directory
 
 Write the following commands in sequence : 
 
-```
-npm init
-npm install express
-npm install apollo-server-express
-npm install body-parser
-npm install express-graphql
-npm install cors
-npm install mysql2
-npm install graphql
-type package.json``` (You can see all the packages installed)
+```npm init```
+```npm install express```
+```npm install apollo-server-express```
+```npm install body-parser```
+```npm install express-graphql```
+```npm install cors```
+```npm install mysql2```
+```npm install graphql```
+```type package.json``` (You can see all the packages installed)
 
 Write follwing code in index.js under server directory
 ```js
