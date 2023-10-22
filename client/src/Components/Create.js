@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client';
 import { Button, Form } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
-import { toDateStr, fileToBase64 } from '../Base64';
+import { toDateStr, fileToBase64 } from '../Convert';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
