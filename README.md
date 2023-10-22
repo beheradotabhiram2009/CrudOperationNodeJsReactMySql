@@ -166,29 +166,6 @@ Write the following commands in sequence to install required packages:
 
 (You can see all the packages installed)
 
-Write following code in index.html under public folder
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-  </body>
-</html>
-```
 Write following code in index.js under src folder
 ```js
 import React from 'react';
@@ -286,7 +263,7 @@ export const DELETE_USER = gql`
   }
 `;
 ```
-Write two convertion functions in Base64.js under src folder
+Write two convertion functions in Convert.js under src folder
 ```js
 //file to base64
 export const fileToBase64 =(file, callback) =>{
@@ -394,7 +371,7 @@ import { useMutation } from '@apollo/client';
 import { Button, Form } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
-import { toDateStr, fileToBase64 } from '../Base64';
+import { toDateStr, fileToBase64 } from '../Convert';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -485,7 +462,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { EDIT_USER, VIEW_USER } from '../Queries';
 import { Button, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import { fileToBase64, toDateStr } from '../Base64';
+import { fileToBase64, toDateStr } from '../Convert';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
