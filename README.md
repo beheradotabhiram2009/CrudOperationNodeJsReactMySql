@@ -1,4 +1,4 @@
-## Demo Example provides crud operation using Graphql, React, Apollo, Express, mysql for image and date field
+### Demo Example provides crud operation using Graphql, React, Apollo, Express, mysql for image and date field using sql
 
 Download and install mysql 8.1
 
@@ -234,7 +234,7 @@ function App() {
   
 export default App;
 ```
-Create two folders 1. Components, 2. Queries under src folder
+Create two folders 1. ```Components```, 2. ```Queries``` under src folder
 
 Write following code in index.js under Queries folder
 ```js
@@ -589,4 +589,4 @@ function  Edit() {
 }
 export default Edit;
 ```
-now execute npm start command and test the application
+now execute ```npm start``` command and test crud operation 
