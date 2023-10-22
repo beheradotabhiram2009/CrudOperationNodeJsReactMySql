@@ -135,7 +135,7 @@ httpServer = require('http').createServer(app);
 httpServer.listen('4000');
 console.log('Running a GraphQL API server at localhost:4000/graphql');
 ```
-write command: node index.js then You should see :
+write command: ```node index.js``` then You should see :
 
 Running a GraphQL API server at localhost:4000/graphql
 
@@ -143,16 +143,18 @@ Connected to database
 
 Go to parent directory by using cd..
 
-Write the command: 
-
-```npx create-react-app client``` 
-
+Write the command to create react client application
+```
+npx create-react-app client
+``` 
 (ignore 6 errors)
+
 Change the directory to client
 
-Write the following commands in sequence : 
+Write command ```npm start``` (now you can see react logo on the screen)
 
-```npm start``` (now you can see react logo on the screen)
+Write the following commands in sequence to install required packages: 
+
 ```npm install react-router-dom@6```
 ```npm install react-bootstrap```
 ```npm install apollo-boost```
