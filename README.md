@@ -6,11 +6,11 @@ create a database userapp and a table users by using following sql
 ```sql
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  `email` varchar(45) DEFAULT NULL,
-  `job_title` varchar(45) DEFAULT NULL,
+  `name` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `job_title` varchar(45),
   `content` longtext,
-  `joining_date` date DEFAULT NULL,
+  `joining_date` date,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 );
