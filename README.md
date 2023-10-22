@@ -23,7 +23,7 @@ Create a directory server, change to server directory
 
 Write the following commands in sequence : 
 
-'''cmd
+```
 npm init
 npm install express
 npm install apollo-server-express
