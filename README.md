@@ -162,7 +162,7 @@ Write the following commands in sequence to install required packages:
 ```npm install bootstrap```
 ```npm install react-datepicker```
 ```npm install graphql```
-````type package.json```
+```type package.json```
 
 (You can see all the packages installed)
 
