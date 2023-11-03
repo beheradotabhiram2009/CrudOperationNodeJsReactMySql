@@ -170,6 +170,8 @@ http://localhost:4000/graphql
 
 ![image](https://github.com/beheradotabhiram2009/CrudOperationGraphqExcessReact/assets/25347074/69653a82-0717-4567-bf0b-1504b9f10139)
 
+![image](https://github.com/beheradotabhiram2009/CrudOperationGraphqExcessReact/assets/25347074/eabcf56a-ab24-4813-8887-6743de50885f)
+
 
 Go to parent directory by using cd..
 
