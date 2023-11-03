@@ -159,7 +159,7 @@ Running a GraphQL API server 🚀 at localhost:4000/graphql
 
 Connected to database
 
-To check quirie and mutations browse 
+To check quries and mutations browse 
 
 ```
 http://localhost:4000/graphql
