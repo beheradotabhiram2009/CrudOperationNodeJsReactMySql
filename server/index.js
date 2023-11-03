@@ -1,12 +1,13 @@
-const express = require('express');
-const  { graphqlHTTP } = require('express-graphql');
-const { GraphQLScalarType, Kind, buildSchema } = require('graphql');
-const mysql = require('mysql2');
-const cors = require('cors');
+import express   from 'express';
+import http  from 'http';
+import  { graphqlHTTP } from 'express-graphql';
+import { GraphQLScalarType, Kind, buildSchema } from 'graphql';
+import mysql from 'mysql2';
+import cors from 'cors';
 
 let con = {};
 const app = express();
-app.use(express.json({ limit: '15mb' }));
+app.use(express.json({ limit: '16mb' }))
 app.use(cors());
 
   const resolverDate = {
@@ -92,6 +93,6 @@ app.use('/graphql', graphqlHTTP({
     graphiql: true,
 }));
 
-httpServer = require('http').createServer(app);
+const httpServer = http.createServer(app);
 httpServer.listen('4000');
-console.log('Running a GraphQL API server at localhost:4000/graphql');
+console.log('Running a GraphQL API server 🚀 at localhost:4000/graphql'); 
