@@ -21,10 +21,9 @@ function Create() {
     const changeContent = (e) => {
         if (e.target.files[0]) {
             const file = e.target.files[0];
-            //setMime('image/'+file.name.split('.')[1]);
             fileToBase64(file, function(base64Data){
                 console.log(base64Data);
-                setContent(base64Data.split(',')[1]);
+                setContent(base64Data);
             })
         }
     }
@@ -77,8 +76,7 @@ function Create() {
                         variant="primary" type="submit">
                         Submit
                     </Button>
-                    <img src={'data:image/jpeg;base64,'+content} 
-                        width={75} height={75} alt='' />
+                    <img src={content} width={75} height={75} alt='' />
                 </div>
             </Form>
         </div>
