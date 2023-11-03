@@ -51,7 +51,7 @@ function Home() {
 							<td>{user.job_title}</td>
 							<td>{user.email}</td>
 							<td>{new Date(user.joining_date).toDateString()}</td>
-					    	<td><img src= {'data:image/jpeg;base64,'+user.content} width={50} height={50} alt='' /></td>
+					    	<td><img src= {user.content} width={50} height={50} alt='' /></td>
 							<td>
 								<Link to={`/edit`}>
 									<Button onClick={(e) =>{
