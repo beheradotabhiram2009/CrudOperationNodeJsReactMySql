@@ -226,6 +226,7 @@ root.render(
   </ApolloProvider>,
 );
 ```
+
 Write following code in App.js under src folder
 ```js
 import React from 'react'
@@ -303,6 +304,7 @@ export const DELETE_USER = gql`
   }
 `;
 ```
+
 Write two convertion functions in Convert.js under src folder
 ```js
 //file to base64
@@ -403,6 +405,7 @@ function Home() {
 }	
 export default Home;
 ```
+
 Write following code in Create.js under Components folder
 ```js
 import React, { useState } from 'react'
@@ -493,6 +496,7 @@ function Create() {
   
 export default Create
 ```
+
 Write following code in Edit.js under Components folder
 ```js
 import React, { Fragment, useEffect, useState } from 'react'
@@ -606,4 +610,5 @@ function  Edit() {
 }
 export default Edit;
 ```
-now execute ```npm start``` command and test crud operation 
+
+###now execute ```npm start``` command and test crud operation 
