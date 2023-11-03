@@ -189,12 +189,19 @@ Write command ```npm start``` (now you can see react logo on the screen)
 Write the following commands in sequence to install required packages: 
 
 ```npm install react-router-dom@6```
+
 ```npm install react-bootstrap```
+
 ```npm install apollo-boost```
+
 ```npm install @apollo/client```
+
 ```npm install bootstrap```
+
 ```npm install react-datepicker```
+
 ```npm install graphql```
+
 ```type package.json```
 
 (You can see all the packages installed)
@@ -370,7 +377,7 @@ function Home() {
 							<td>{user.job_title}</td>
 							<td>{user.email}</td>
 							<td>{new Date(user.joining_date).toDateString()}</td>
-					    	<td><img src= {'data:image/jpeg;base64,'+user.content} width={50} height={50} alt='' /></td>
+					    	<td><img src= {user.content} width={50} height={50} alt='' /></td>
 							<td>
 								<Link to={`/edit`}>
 									<Button onClick={(e) =>{
@@ -423,7 +430,7 @@ function Create() {
             const file = e.target.files[0];
             fileToBase64(file, function(base64Data){
                 console.log(base64Data);
-                setContent(base64Data.split(',')[1]);
+                setContent(base64Data);
             })
         }
     }
@@ -477,8 +484,7 @@ function Create() {
                         variant="primary" type="submit">
                         Submit
                     </Button>
-                    <img src={'data:image/jpeg;base64,'+content} 
-                        width={75} height={75} alt='' />
+                    <img src={content} width={75} height={75} alt='' />
                 </div>
             </Form>
         </div>
@@ -535,7 +541,7 @@ function  Edit() {
             const file = e.target.files[0];
             fileToBase64(file, function(base64Data){
                 console.log(base64Data);
-                setContent(base64Data.split(',')[1]);
+                setContent(base64Data);
             })
         }
     }
@@ -592,8 +598,7 @@ function  Edit() {
                         }variant="warning" type="submit" size="lg">
                         Update
                     </Button>
-                    <img src={'data:image/jpeg;base64,'+content} 
-                        width={75} height={75} alt='' />
+                    <img src={content} width={75} height={75} alt='' />
                 </div>
             </Form>
         </div>
