@@ -9,7 +9,7 @@ CREATE TABLE `users` (
   `name` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
   `job_title` varchar(45),
-  `content` longtext,
+  `content` mediumtext,
   `joining_date` date,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
@@ -24,27 +24,46 @@ Create a directory server, change to server directory
 Write the following commands in sequence : 
 
 ```npm init```
+
 ```npm install express```
+
+```npm i nodemon```
+
 ```npm install body-parser```
+
 ```npm install express-graphql```
+
 ```npm install cors```
+
 ```npm install mysql2```
+
 ```npm install graphql```
+
 ```type package.json``` 
 
 (You can see all the packages installed)
 
+add following to package.json for ES6
+```
+"type": "module",
+```
+add following in script of package.json to run server automatically
+```
+"dev": "nodemon index.js"
+```
+
 Write follwing code in index.js under server directory
 ```js
-const express = require('express');
-const  { graphqlHTTP } = require('express-graphql');
-const { GraphQLScalarType, Kind, buildSchema } = require('graphql');
-const mysql = require('mysql2');
-const cors = require('cors');
+import express   from 'express';
+import http  from 'http';
+import  { graphqlHTTP } from 'express-graphql';
+import { GraphQLScalarType, Kind, buildSchema } from 'graphql';
+import mysql from 'mysql2';
+import cors from 'cors';
 
 let con = {};
 const app = express();
-app.use(express.json({ limit: '15mb' }));
+app.use(express.json({ limit: '16mb' }))
 app.use(cors());
 
   const resolverDate = {
@@ -130,15 +149,27 @@ app.use('/graphql', graphqlHTTP({
     graphiql: true,
 }));
 
-httpServer = require('http').createServer(app);
+const httpServer = http.createServer(app);
 httpServer.listen('4000');
-console.log('Running a GraphQL API server at localhost:4000/graphql');
+console.log('Running a GraphQL API server 🚀 at localhost:4000/graphql');
 ```
-write command: ```node index.js``` then You should see :
+write command: ```npm run dev``` then You should see :
 
-Running a GraphQL API server at localhost:4000/graphql
+Running a GraphQL API server 🚀 at localhost:4000/graphql
 
 Connected to database
+
+To check quirie and mutations browse 
+
+```
+http://localhost:4000/graphql
+```
+![image](https://github.com/beheradotabhiram2009/CrudOperationGraphqExcessReact/assets/25347074/2b5a1855-a089-4f8a-afd6-2151a83bd5e9)
+
+![image](https://github.com/beheradotabhiram2009/CrudOperationGraphqExcessReact/assets/25347074/b4ae042c-8fe0-4acc-9a47-78a186931f89)
+
+![image](https://github.com/beheradotabhiram2009/CrudOperationGraphqExcessReact/assets/25347074/69653a82-0717-4567-bf0b-1504b9f10139)
+
 
 Go to parent directory by using cd..
 
