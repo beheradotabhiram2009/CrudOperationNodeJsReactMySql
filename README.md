@@ -1,6 +1,6 @@
 ### Demo Example provides crud operation using Graphql, React, Apollo, Express, mysql for image and date field using sql
-### Download and install mysql 8.1
-### create a database userapp and a table users by using following sql
+#### Download and install mysql 8.1
+#### create a database userapp and a table users by using following sql
 ```sql
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -13,10 +13,10 @@ CREATE TABLE `users` (
   UNIQUE KEY `id_UNIQUE` (`id`)
 );
 ```
-### insert sample rows.
-### download and install node.js (18)
-### Create a directory server, change to server directory
-### Write the following commands in sequence : 
+#### insert sample rows.
+#### download and install node.js (18)
+#### Create a directory server, change to server directory
+#### Write the following commands in sequence : 
 ```npm init```
 ```npm install express```
 ```npm i nodemon```
