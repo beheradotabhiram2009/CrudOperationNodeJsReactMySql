@@ -1,8 +1,6 @@
 ### Demo Example provides crud operation using Graphql, React, Apollo, Express, mysql for image and date field using sql
-
-Download and install mysql 8.1
-
-create a database userapp and a table users by using following sql
+### Download and install mysql 8.1
+### create a database userapp and a table users by using following sql
 ```sql
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -15,44 +13,28 @@ CREATE TABLE `users` (
   UNIQUE KEY `id_UNIQUE` (`id`)
 );
 ```
-insert sample rows.
-
-download and install node.js 
-
-Create a directory server, change to server directory
-
-Write the following commands in sequence : 
-
+### insert sample rows.
+### download and install node.js (18)
+### Create a directory server, change to server directory
+### Write the following commands in sequence : 
 ```npm init```
-
 ```npm install express```
-
 ```npm i nodemon```
-
-```npm install body-parser```
-
 ```npm install express-graphql```
-
 ```npm install cors```
-
 ```npm install mysql2```
-
 ```npm install graphql```
-
+###  You can see all the packages installed in package.json
 ```type package.json``` 
-
-(You can see all the packages installed)
-
-add following to package.json for ES6
+### add following to package.json for ES6
 ```
 "type": "module",
 ```
-add following in script of package.json to run server automatically
+### add following in script of package.json to run server automatically
 ```
 "dev": "nodemon index.js"
 ```
-
-Write follwing code in index.js under server directory
+### Write follwing code in index.js under server directory
 ```js
 import express   from 'express';
 import http  from 'http';
@@ -153,60 +135,106 @@ const httpServer = http.createServer(app);
 httpServer.listen('4000');
 console.log('Running a GraphQL API server 🚀 at localhost:4000/graphql');
 ```
-write command: ```npm run dev``` then You should see :
-
-Running a GraphQL API server 🚀 at localhost:4000/graphql
-
-Connected to database
-
-To check quries and mutations browse 
-
-```
+### write command: 
+```npm run dev``` 
+### then You should see :
+### Running a GraphQL API server 🚀 at localhost:4000/graphql
+### Connected to database
+### To check quries and mutations browse 
 http://localhost:4000/graphql
+### write commands and set veriables to check queries
+### to check insertion write
 ```
-![image](https://github.com/beheradotabhiram2009/CrudOperationGraphqExcessReact/assets/25347074/2b5a1855-a089-4f8a-afd6-2151a83bd5e9)
+mutation createUser($name: String, $email: String, $job_title: String, $joining_date:Date, $content:String) {
+    createUser (name: $name, email: $email, job_title: $job_title, joining_date:$joining_date, content:$content)
+  }
+```
+### under varibles write
+```
+{"name": "snehayukta behera", "email": "behera.abhiram2009@gmail.com", "job_title": "student", "joining_date": "2021-11-15", "content": null}
+```
+### to check retrieval write and see result at right
+```
+{
+  getUsers{
+      id,
+      name,
+      job_title,
+      email,
+      joining_date,
+      content
+    }
+  }
+```
+### to get particular row write
+```
+{ getUser(id:2)
+  {
+    id
+    name
+    job_title
+    joining_date
+  }
+}
+```
+### under varibles write
+'''{"id": 2}```
+### to delete a row write
+```
+mutation deleteUser($id: Int) {
+    deleteUser(id: $id)
+  }
+```
+### under varibles write
+'''{"id": 2}```
+### to update a row write
+```
+mutation updateUser($id: Int, $name: String, $email: String, $job_title: String, $joining_date:Date, $content:String) {
+    updateUser(id: $id, name: $name, email: $email, job_title: $job_title, joining_date:$joining_date, content:$content)
+  }
+```
+### under varibles write
+```
+{"id": 2, "name": "snehayukta behera", "email": "behera.abhiram2009@gmail.com", "job_title": "student", "joining_date": "2021-11-15", "content": null}
+```
 
-![image](https://github.com/beheradotabhiram2009/CrudOperationGraphqExcessReact/assets/25347074/b4ae042c-8fe0-4acc-9a47-78a186931f89)
+### Go to parent directory by using cd..
 
-![image](https://github.com/beheradotabhiram2009/CrudOperationGraphqExcessReact/assets/25347074/69653a82-0717-4567-bf0b-1504b9f10139)
-
-![image](https://github.com/beheradotabhiram2009/CrudOperationGraphqExcessReact/assets/25347074/eabcf56a-ab24-4813-8887-6743de50885f)
-
-![image](https://github.com/beheradotabhiram2009/CrudOperationGraphqExcessReact/assets/25347074/a99eaca8-c4ec-433a-ac19-f30266305f1a)
-
-Go to parent directory by using cd..
-
-Write the command to create react client application
+### Write the command to create react client application
 ```
 npx create-react-app client
 ``` 
-(ignore 6 errors)
-
-Change the directory to client
-
-Write command ```npm start``` (now you can see react logo on the screen)
-
-Write the following commands in sequence to install required packages: 
-
+### (ignore 8 errors)
+### Change the directory to client
+## Write command ```npm start``` (now you can see react logo on the screen)
+### Write the following commands in sequence to install required packages: 
 ```npm install react-router-dom@6```
-
 ```npm install react-bootstrap```
-
-```npm install apollo-boost```
-
 ```npm install @apollo/client```
-
 ```npm install bootstrap```
-
-```npm install react-datepicker```
-
-```npm install graphql```
-
+```npm install react-datepicker@7```
 ```type package.json```
-
-(You can see all the packages installed)
-
-Write following code in index.js under src folder
+### (You can see all the packages installed)
+### create a directory .vscode under client directory
+### create a file lunch.json under it and store the following in it
+```
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Chrome",
+        "type": "chrome",
+        "request": "launch",
+        "url": "http://localhost:3000",
+        "webRoot": "${workspaceFolder}/src",
+        "sourceMapPathOverrides": {
+          "webpack:///src/*": "${webRoot}/*"
+        }
+      }
+    ]
+  }
+```
+### Write following code in index.js under src folder
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -226,8 +254,7 @@ root.render(
   </ApolloProvider>,
 );
 ```
-
-Write following code in App.js under src folder
+### Write following code in App.js under src folder
 ```js
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -254,9 +281,8 @@ function App() {
   
 export default App;
 ```
-Create two folders 1. ```Components```, 2. ```Queries``` under src folder
-
-Write following code in index.js under Queries folder
+### Create two folders 1. ```Components```, 2. ```Queries``` under src folder
+###Write following code in index.js under Queries folder
 ```js
 import { gql } from '@apollo/client';
 
@@ -304,8 +330,7 @@ export const DELETE_USER = gql`
   }
 `;
 ```
-
-Write two convertion functions in Convert.js under src folder
+### Write two convertion functions in Convert.js under src folder
 ```js
 //file to base64
 export const fileToBase64 =(file, callback) =>{
@@ -322,9 +347,8 @@ export const toDateStr=(dt)=>{
     const m = dt.getMonth()+1;
     return (dt.getFullYear() + '-' + m + '-' + dt.getDate());
 }
-
 ```
-Write following code in Home.js under Components folder
+### Write following code in Home.js under Components folder
 ```js
 import React from "react";
 import { useMutation, useQuery } from '@apollo/client';
@@ -405,8 +429,7 @@ function Home() {
 }	
 export default Home;
 ```
-
-Write following code in Create.js under Components folder
+### Write following code in Create.js under Components folder
 ```js
 import React, { useState } from 'react'
 import { ADD_USER } from '../Queries';
@@ -496,8 +519,7 @@ function Create() {
   
 export default Create
 ```
-
-Write following code in Edit.js under Components folder
+### Write following code in Edit.js under Components folder
 ```js
 import React, { Fragment, useEffect, useState } from 'react'
 import DatePicker from 'react-datepicker';
@@ -530,7 +552,7 @@ function  Edit() {
             setEmail(data.getUser.email)
             setJobTitle(data.getUser.job_title)
             setJoiningDate(toDateStr(new Date(data.getUser.joining_date)))
-            setContent(blobToBase64(data.getUser.content)) //content = base4 string
+            setContent(data.getUser.content) //content = base4 string
         }
     },[data]); 
  
@@ -610,5 +632,5 @@ function  Edit() {
 }
 export default Edit;
 ```
-
 ### now execute ```npm start``` command and test crud operation 
+### note that server should also running
